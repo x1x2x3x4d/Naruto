@@ -1,0 +1,126 @@
+
+
+local ScreenGui = Instance.new("ScreenGui")
+local Frame = Instance.new("Frame")
+local TextLabel = Instance.new("TextLabel")
+local UICorner = Instance.new("UICorner")
+local UICorner_2 = Instance.new("UICorner")
+local off_kill = Instance.new("TextButton")
+local UICorner_3 = Instance.new("UICorner")
+local on_kill = Instance.new("TextButton")
+local UICorner_4 = Instance.new("UICorner")
+local TextLabel_2 = Instance.new("TextLabel")
+local TextLabel_3 = Instance.new("TextLabel")
+local on_waves = Instance.new("TextButton")
+local UICorner_5 = Instance.new("UICorner")
+
+-- Properties
+
+ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+Frame.Parent = ScreenGui
+Frame.BackgroundColor3 = Color3.new(0.258824, 0.258824, 0.258824)
+Frame.Position = UDim2.new(0.163269207, 0, 0.107812494, 0)
+Frame.Size = UDim2.new(0, 606, 0, 453)
+Frame.Draggable = true
+Frame.Active = true
+
+TextLabel.Parent = Frame
+TextLabel.BackgroundColor3 = Color3.new(1, 1, 1)
+TextLabel.Size = UDim2.new(0, 606, 0, 50)
+TextLabel.Font = Enum.Font.SourceSans
+TextLabel.Text = "Naruto Defense Simulator"
+TextLabel.TextColor3 = Color3.new(0, 0, 0)
+TextLabel.TextSize = 45
+
+UICorner.Parent = TextLabel
+
+UICorner_2.Parent = Frame
+
+off_kill.Name = "off_kill"
+off_kill.Parent = Frame
+off_kill.BackgroundColor3 = Color3.new(0, 0, 0)
+off_kill.Position = UDim2.new(0.669966996, 0, 0.256070644, 0)
+off_kill.Size = UDim2.new(0, 200, 0, 50)
+off_kill.Font = Enum.Font.Unknown
+off_kill.Text = "Off"
+off_kill.TextColor3 = Color3.new(1, 1, 1)
+off_kill.TextSize = 25
+off_kill.MouseButton1Down:Connect(function()
+	_G.Kill = false -- change to true/false to start/stop the script
+	while _G.Kill == true do
+		for i,v in pairs(game.Workspace.Monsters:GetChildren()) do
+			v:Destroy()
+		end
+		wait()
+	end
+end)
+
+UICorner_3.Parent = off_kill
+UICorner_3.CornerRadius = UDim.new(0, 9)
+
+on_kill.Name = "on_kill"
+on_kill.Parent = Frame
+on_kill.BackgroundColor3 = Color3.new(0, 0, 0)
+on_kill.Position = UDim2.new(0, 0, 0.256070614, 0)
+on_kill.Size = UDim2.new(0, 200, 0, 50)
+on_kill.Font = Enum.Font.Unknown
+on_kill.Text = "On"
+on_kill.TextColor3 = Color3.new(1, 1, 1)
+on_kill.TextSize = 25
+on_kill.MouseButton1Down:Connect(function()
+	_G.Kill = true -- change to true/false to start/stop the script
+	while _G.Kill == true do
+		for i,v in pairs(game.Workspace.Monsters:GetChildren()) do
+			v:Destroy()
+		end
+		wait()
+	end
+end)
+
+UICorner_4.Parent = on_kill
+UICorner_4.CornerRadius = UDim.new(0, 9)
+
+TextLabel_2.Parent = Frame
+TextLabel_2.BackgroundColor3 = Color3.new(1, 1, 1)
+TextLabel_2.BackgroundTransparency = 1
+TextLabel_2.Position = UDim2.new(0.339933991, 0, 0.123620316, 0)
+TextLabel_2.Size = UDim2.new(0, 193, 0, 50)
+TextLabel_2.Font = Enum.Font.Unknown
+TextLabel_2.Text = "Kill All Monster"
+TextLabel_2.TextColor3 = Color3.new(1, 1, 1)
+TextLabel_2.TextSize = 30
+
+TextLabel_3.Parent = Frame
+TextLabel_3.BackgroundColor3 = Color3.new(1, 1, 1)
+TextLabel_3.BackgroundTransparency = 1
+TextLabel_3.Position = UDim2.new(0.339933991, 0, 0.364238411, 0)
+TextLabel_3.Size = UDim2.new(0, 193, 0, 50)
+TextLabel_3.Font = Enum.Font.Unknown
+TextLabel_3.Text = "Auto Skip Waves"
+TextLabel_3.TextColor3 = Color3.new(1, 1, 1)
+TextLabel_3.TextSize = 30
+
+on_waves.Name = "on_waves"
+on_waves.Parent = Frame
+on_waves.BackgroundColor3 = Color3.new(0, 0, 0)
+on_waves.Position = UDim2.new(0.330033004, 0, 0.498896241, 0)
+on_waves.Size = UDim2.new(0, 206, 0, 50)
+on_waves.Font = Enum.Font.Unknown
+on_waves.Text = "On"
+on_waves.TextColor3 = Color3.new(1, 1, 1)
+on_waves.TextSize = 25
+on_waves.MouseButton1Down:Connect(function()
+	while wait() do
+		local args = {
+			[1] = 13,
+			[2] = {}
+		}
+
+		game:GetService("ReplicatedStorage").RemoteFunction.clientRequestServer:InvokeServer(unpack(args))
+	end
+end)
+
+UICorner_5.Parent = on_waves
+UICorner_5.CornerRadius = UDim.new(0, 9)
